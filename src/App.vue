@@ -3,6 +3,9 @@
 
 <template>
   <main>
+    <div class="container">
+      <div class="main-container"></div>
+    </div>
   </main>
 </template>
 
