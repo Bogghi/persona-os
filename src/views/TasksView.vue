@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <div>list of tasks</div>
+  <h1>task</h1>
 </template>
