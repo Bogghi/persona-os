@@ -1,9 +1,9 @@
 <script setup lang="ts">
-defineProps<{
-  isActive: boolean;
-  callback: () => void;
-  icon: String;
-}>();
+  defineProps<{
+    isActive: boolean;
+    callback: () => void;
+    icon: String;
+  }>();
 </script>
 
 <template>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { useRoute, useRouter } from 'vue-router';
   import SideBarButton from './components/shared/SideBarButton.vue';
+  import { invoke } from '@tauri-apps/api/core';
 
   const route = useRoute();
   const router = useRouter();
@@ -9,6 +10,10 @@
     {
       path: '/tasks',
       icon: 'fa-regular fa-square-check',
+      callback: () => {
+        router.push('/tasks');
+        invoke('greet');
+      }
     },
   ];
 </script>
@@ -21,7 +26,7 @@
           v-for="section in sections"
           :key="section.path"
           :is-active="route.path === section.path"
-          :callback="() => router.push(section.path)"
+          :callback="section.callback"
           :icon="section.icon"
         />
       </div>
