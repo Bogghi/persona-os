@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { useRoute, useRouter } from 'vue-router';
   import SideBarButton from './components/shared/SideBarButton.vue';
-  import { invoke } from '@tauri-apps/api/core';
+  // import { invoke } from '@tauri-apps/api/core';
 
   const route = useRoute();
   const router = useRouter();
@@ -12,7 +12,8 @@
       icon: 'fa-regular fa-square-check',
       callback: () => {
         router.push('/tasks');
-        invoke('greet');
+        // invoke('greet', { message: 'test' });
+        // invoke('return_to_frontend').then(message => console.log(message));
       }
     },
   ];
