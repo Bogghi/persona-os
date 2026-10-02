@@ -34,7 +34,7 @@
   },
   "plugins": {
     "sql": {
-      "preload": ["sqlite: persona-os.db"]
+      "preload": ["sqlite:persona-os.db"]
     }
   }
 }
