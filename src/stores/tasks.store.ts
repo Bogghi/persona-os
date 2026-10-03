@@ -16,10 +16,11 @@ export const useTasksStore = defineStore('tasksStore', () => {
     tasks.value = await db.select<Task[]>('select * from tasks;');
   }
 
-  async function add(title: string) {
+  async function add(name: string) {
+    console.log(name);
     let db = await getDb();
-    await db.execute("insert into taks (title) values ($1)", [title]);
-    load();
+    await db.execute("insert into tasks (name) values ($1)", [name]);
+    await load();
   }
 
   return { tasks, load, add };
