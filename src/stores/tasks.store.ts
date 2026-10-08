@@ -23,5 +23,11 @@ export const useTasksStore = defineStore('tasksStore', () => {
     await load();
   }
 
-  return { tasks, load, add };
+  async function setDone(id: number, done: boolean) {
+    let db = await getDb();
+    await db.execute("update tasks set done = $1 where id = $2", [done ? 1 : 0, id]);
+    await load();
+  }
+
+  return { tasks, load, add, setDone };
 });
