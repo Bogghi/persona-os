@@ -5,7 +5,9 @@ import { getDb } from '../db/client';
 export interface Task {
   id: number,
   name: string,
-  done: number 
+  done: number,
+  created_datetime: string,
+  due_date: string | null
 }
 
 export const useTasksStore = defineStore('tasksStore', () => {
@@ -29,13 +31,19 @@ export const useTasksStore = defineStore('tasksStore', () => {
     await load();
   }
 
+  async function setDueDate(id: number, due: string | null) {
+    let db = await getDb();
+    await db.execute("update tasks set due_date = $1 where id = $2", [due || null, id]);
+    await load();
+  }
+
   async function remove(id: number) {
     let db = await getDb();
     await db.execute("delete from tasks where id = $1", [id]);
     await load();
   }
 
-  return { tasks, load, add, setDone, remove };
+  return { tasks, load, add, setDone, setDueDate, remove };
 });
 
 if (import.meta.hot) {
