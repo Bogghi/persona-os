@@ -1,6 +1,6 @@
 <script setup lang="ts">
   defineProps<{
-    icon: String
+    icon: String,
   }>();
 </script>
 

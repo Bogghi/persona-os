@@ -1,4 +1,4 @@
-import { defineStore } from 'pinia'; 
+import { defineStore, acceptHMRUpdate } from 'pinia';
 import { ref } from 'vue'; 
 import { getDb } from '../db/client';
 
@@ -29,5 +29,15 @@ export const useTasksStore = defineStore('tasksStore', () => {
     await load();
   }
 
-  return { tasks, load, add, setDone };
+  async function remove(id: number) {
+    let db = await getDb();
+    await db.execute("delete from tasks where id = $1", [id]);
+    await load();
+  }
+
+  return { tasks, load, add, setDone, remove };
 });
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useTasksStore, import.meta.hot));
+}
